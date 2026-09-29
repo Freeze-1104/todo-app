@@ -43,15 +43,9 @@
 XAMPP Control Panel を開き、**MySQL の行の「Start」** を押します。
 「Running」と緑色になれば OK です。（Apache は使いません）
 
-### 2. リポジトリをクローンする
-
-```powershell
-cd $HOME\Documents
-git clone <配布されたリポジトリのURL> todo-app
-cd todo-app
-```
-
 **これ以降のコマンドは、すべて `todo-app` フォルダの中で実行します。**
+
+VSCodeで統合ターミナルを開く
 
 ### 3. ライブラリをインストールする（3〜5 分）
 

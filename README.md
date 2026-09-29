@@ -93,23 +93,6 @@ php artisan serve
 
 ---
 
-### まとめてコピペする用（2 回目以降の人向け）
-
-XAMPP で MySQL を起動したあと、以下をターミナルに貼り付ければ 7 まで一気に進みます。
-`<配布されたリポジトリのURL>` の部分だけ書き換えてください。
-
-```powershell
-cd $HOME\Documents
-git clone <配布されたリポジトリのURL> todo-app
-cd todo-app
-composer install
-Copy-Item .env.example .env
-php artisan key:generate
-C:\xampp\mysql\bin\mysql.exe -u root -e "CREATE DATABASE IF NOT EXISTS todo_app DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-php artisan migrate
-php artisan serve
-```
-
 うまくいかないときは [docs/troubleshooting.md](docs/troubleshooting.md) を見てください。
 
 ---

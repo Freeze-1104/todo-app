@@ -15,11 +15,8 @@ class TaskSeeder extends Seeder
         $names = [
             '牛乳を買う',
             '洗濯物をたたむ',
-            'Laravelの課題を進める',
-            '部屋を掃除する',
-            '家に帰る',
             'お風呂に入る',
-            '寝る',
+            '夕食を食べる',
         ];
 
         foreach ($names as $name) {

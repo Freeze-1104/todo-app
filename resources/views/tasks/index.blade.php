@@ -48,6 +48,13 @@
                             </form>
 
                         <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-accent btn-sm">編集</a>
+
+                        <form action="{{ route('tasks.destroy', $task->id) }}" method="post"
+                              onsubmit="return confirm('「{{ $task->name }}」を削除します。よろしいですか？');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-danger btn-sm">削除</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

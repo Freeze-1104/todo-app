@@ -20,5 +20,17 @@
                 <a href="{{ route('tasks.index') }}" class="btn-link">一覧に戻る</a>
             </div>
         </form>
+
+        <form action="{{ route('tasks.complete', $task->id) }}" method="post">
+            @csrf
+            @method('PATCH')
+            <button type="submit" class="btn-success">完了にする</button>
+        </form>
+
+        <p class="muted">
+            登録：{{ $task->created_at->format('Y/m/d H:i') }} ／
+            更新：{{ $task->updated_at->format('Y/m/d H:i') }}
+        </p>
+
     </div>
 @endsection

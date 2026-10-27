@@ -40,7 +40,7 @@
 
 ### 1. XAMPP の MySQL を起動する
 
-XAMPP Control Panel を開き、**MySQL の行の「Start」** を押します。
+XAMPP Control Panel を開き、**ApachとMySQL の行の「Start」** を押します。
 「Running」と緑色になれば OK です。（Apache は使いません）
 
 **これ以降のコマンドは、すべて `todo-app` フォルダの中で実行します。**
@@ -100,24 +100,6 @@ php artisan serve
 ## ⚠️ 授業の終わりに、必ず作業を保存すること
 
 **この PC は電源を切るとデータが消えます。書いたコードもすべて消えます。**
-帰る前に、必ず次のどちらかをやってください。
-
-**方法 A：自分の GitHub リポジトリに push する（おすすめ）**
-
-```powershell
-git add .
-git commit -m "第5章まで完了"
-git remote add mine <自分のリポジトリのURL>
-git push mine main
-```
-
-次回は、配布リポジトリではなく **自分のリポジトリ** をクローンすれば続きから始められます。
-
-**方法 B：フォルダごと USB メモリやクラウドにコピーする**
-
-`todo-app` フォルダをまるごとコピーします。
-`vendor` フォルダは大きいので、消してからコピーしても構いません
-（次回 `composer install` すれば元に戻ります）。
 
 ---
 

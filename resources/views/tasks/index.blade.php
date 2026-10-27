@@ -20,7 +20,11 @@
     </div>
 
     <p class="muted">登録件数：{{ $tasks->count() }} 件</p>
-    
+
+    {{-- 未完了タスク一覧 --}}
+    @if ($tasks->isEmpty())
+        <p class="empty">未完了のタスクはありません。</p>
+    @else
     <table>
          <thead>
             <tr>
@@ -60,4 +64,35 @@
             @endforeach
         </tbody>
     </table>
+    @endif
+
+        {{-- 完了済みタスク一覧 --}}
+    @if ($doneTasks->isNotEmpty())
+        <h2 class="page-title" style="margin-top: 48px;">完了したタスク</h2>
+        <table>
+            <tbody>
+                @foreach ($doneTasks as $task)
+                    <tr>
+                        <td class="done">{{ $task->name }}</td>
+                        <td class="actions">
+                            <form action="{{ route('tasks.destroy', $task->id) }}" method="post"
+                                  onsubmit="return confirm('本当に削除しますか？');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-danger btn-sm">削除</button>
+                            </form>
+                            
+                            <form action="{{ route('tasks.undo', $task->id) }}" method="post">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn-sm">戻す</button>
+                            </form>
+
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
+
 @endsection

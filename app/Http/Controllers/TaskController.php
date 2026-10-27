@@ -28,7 +28,11 @@ class TaskController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('tasks.index', compact('tasks'));
+        $doneTasks = Task::where('status', true)
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        return view('tasks.index', compact('tasks', 'doneTasks'));
     }
 
     /**
@@ -53,7 +57,9 @@ class TaskController extends Controller
             'status' => false,
         ]);
 
-        return redirect()->route('tasks.index');
+        return redirect()
+        ->route('tasks.index')
+        ->with('message', 'タスクを追加しました。');
     }
 
     /**
@@ -88,7 +94,9 @@ class TaskController extends Controller
         $task->name = $validated['name'];
         $task->save();
 
-        return redirect()->route('tasks.index');
+        return redirect()
+        ->route('tasks.index')
+        ->with('message', 'タスクを更新しました。');
     }
 
     /**
@@ -99,7 +107,10 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->delete();
 
-        return redirect()->route('tasks.index');
+        return redirect()
+            ->route('tasks.index')
+            ->with('message', 'タスクを削除しました。')
+            ->with('type', 'danger');
     }
     
     /**
@@ -111,7 +122,9 @@ class TaskController extends Controller
         $task->status = true;
         $task->save();
 
-        return redirect()->route('tasks.index');
+        return redirect()
+        ->route('tasks.index')
+        ->with('message', 'タスクを完了にしました。');
     }
 
         /**
@@ -127,4 +140,15 @@ class TaskController extends Controller
             ->route('tasks.index')
             ->with('message', 'タスクを未完了に戻しました。');
     }
+
+    public function destroyCompleted()
+    {
+     $count = Task::deleteCompleted();
+
+     return redirect()
+        ->route('tasks.index')
+        ->with('message', "完了済みタスクを {$count} 件削除しました。");
+    }
+    
+    
 }

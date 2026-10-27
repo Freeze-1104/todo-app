@@ -16,9 +16,18 @@
 
     <main>
         <div class="container">
+            {{-- 直前の処理からのお知らせ（フラッシュメッセージ） --}}
+            @if (session('message'))
+                <p class="alert">{{ session('message') }}</p>
+            @endif
+
             @yield('content')
         </div>
     </main>
+
+                @if (session('message'))
+                <p class="alert alert-{{ session('type', 'success') }}">{{ session('message') }}</p>
+            @endif
 
     <footer class="site-footer">
         <div class="container inner">作成：中村 聡太</div>

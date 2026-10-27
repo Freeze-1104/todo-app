@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('tasks.index');
 });
 
 Route::resource('tasks', TaskController::class)
@@ -21,3 +21,6 @@ Route::resource('tasks', TaskController::class)
 
     Route::patch('/tasks/{id}/undo', [TaskController::class, 'undo'])
     ->name('tasks.undo');
+
+    Route::delete('/tasks/completed/all', [TaskController::class, 'destroyCompleted'])
+    ->name('tasks.destroyCompleted');
